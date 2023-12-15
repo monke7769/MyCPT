@@ -32,6 +32,8 @@ rendering the process an engaging exploration rather than an arduous enigma.
 ## Page Designs
 
 ryan
+[![John's Image](https://files.slack.com/files-pri/TUDAF53UJ-F06B415HR6C/john.png)]
+
 
 ## HTML + CSS Editor
 
@@ -103,29 +105,3 @@ hayden
 - We will have a review system on public designs so people can give their valued opinion on each design
 - With the review system people can improve their buttons or change it if they wish
 - The review system will fetch reviews from a database that will contain date the review was made, the author, likes and dislikes, and more
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

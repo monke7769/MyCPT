@@ -66,7 +66,7 @@ srijan
 
 hayden
 
-- we will tag will the designs with certain words/hashtags and create a search function (more specifics will be researched later)
+- we will tag will the designs with certain words/hashtags in smaller font at the top of each page and create a search function (more specifics will be researched later)
 
 ## Like and Dislike designs
 

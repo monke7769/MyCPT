@@ -11,7 +11,7 @@ courses: { compsci: {week: 0} }
 ## Overview
 ian
 ## Purpose
-ryan
+In the domain of web design, where the pursuit of aesthetically pleasing layouts intersects with the nuanced orchestration of cascading style sheets (CSS), the endeavor to efficiently unearth and implement creative concepts can often resemble a traversal through a convoluted labyrinth. Recognizing the inherent value of time, our primary objective is to furnish a guiding beacon—a streamlined pathway, if you will—to effortlessly unveil designs and master the intricacies of CSS, all without the exhaustive investment of protracted periods. Envision this as a digital compass, directing you towards a seamless fusion of creativity and code, thereby rendering the process an engaging exploration rather than an arduous enigma.
 # Frontend
 ## Page Designs
 ryan

@@ -32,7 +32,7 @@ rendering the process an engaging exploration rather than an arduous enigma.
 ## Page Designs
 
 ryan
-[![John's Image](https://files.slack.com/files-pri/TUDAF53UJ-F06B415HR6C/john.png)]
+![John's Image](https://files.slack.com/files-pri/TUDAF53UJ-F06B415HR6C/john.png)
 
 
 ## HTML + CSS Editor

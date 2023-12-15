@@ -48,7 +48,9 @@ ian
 
 #### Animation
 
-srijan
+- The plan for animations is that the user will be able to select an element, then select the path that the element will travel in the page
+- There will also be numerous types of animations to manipulate elements, akin to google slide element animations
+- There will also be "mix-and-matchable" buttons and animations -> allows for the use of certain button designs and a different animation
 
 #### Transition
 

@@ -1,18 +1,11 @@
 ---
 toc: true
-
 comments: false
-
 layout: post
-
 title: CPT Project Plan
-
 description: Basic Outlines and ideas for our upcoming CPT project.
-
 type: plans
-
 courses: { compsci: {week: 0} }
-
 ---
 
 ## Overview
@@ -31,7 +24,11 @@ rendering the process an engaging exploration rather than an arduous enigma.
 ## Page Designs
 
 ryan
+Initial Design
 ![John's Image](https://files.slack.com/files-pri/TUDAF53UJ-F06B415HR6C/john.png)
+
+Canva: 
+![](https://files.slack.com/files-pri/TUDAF53UJ-F06DR62KECR/find_designs.png)
 
 
 ## HTML + CSS Editor

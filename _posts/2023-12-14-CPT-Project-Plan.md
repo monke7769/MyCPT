@@ -23,6 +23,10 @@ rendering the process an engaging exploration rather than an arduous enigma.
 # Frontend
 ## Page Designs
 
+Sensei Wu Revealed. IN ACTION!
+![Sensei Wu Spinjitzu](../../../images/Master_Wu.webp)
+
+
 ryan
 
 Initial Design

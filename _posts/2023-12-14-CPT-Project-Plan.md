@@ -28,7 +28,7 @@ Initial Design
 ![John's Image](https://files.slack.com/files-pri/TUDAF53UJ-F06B415HR6C/john.png)
 
 Canva: 
-![](https://files.slack.com/files-pri/TUDAF53UJ-F06DR62KECR/find_designs.png)
+![canva](https://files.slack.com/files-pri/TUDAF53UJ-F06DR62KECR/find_designs.png)
 
 
 ## HTML + CSS Editor

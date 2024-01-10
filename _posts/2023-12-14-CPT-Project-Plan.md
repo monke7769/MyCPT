@@ -26,10 +26,10 @@ rendering the process an engaging exploration rather than an arduous enigma.
 ryan
 
 Initial Design
-![John's Image](https://files.slack.com/files-pri/TUDAF53UJ-F06B415HR6C/john.png)
+![John's Image](../../CPT/images/IdeationAImageDiagramBackend.png)
 
 Canva: 
-![canva](https://files.slack.com/files-pri/TUDAF53UJ-F06DR62KECR/find_designs.png)
+![canva](../../CPT/images/IdeationAImageDiagramBackend.png)
 
 
 ## HTML + CSS Editor

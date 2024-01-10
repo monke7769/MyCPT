@@ -114,5 +114,7 @@ hayden
 - With the review system people can improve their buttons or change it if they wish
 - The review system will fetch reviews from a database that will contain date the review was made, the author, likes and dislikes, and more
 
-![](images/IdeationAImageDiagramBackend.png)
+![](../../../images/IdeationAImageDiagramBackend.png)
+
+The Image Diagram is above
 

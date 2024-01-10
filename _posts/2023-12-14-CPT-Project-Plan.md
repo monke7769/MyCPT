@@ -36,7 +36,16 @@ ryan
 
 ## HTML + CSS Editor
 
-ian
+Our design consists of an HTML and CSS editor in the page. This seems somewhat redundant, since someone can create their design on a local file and upload, however this funtion comes with several benefits.
+- Users who don't want to create a new project file can quickly test lines in a pinch
+- HTML and CSS editors allow people to visualize code written by helper tools such as animation or box shadow
+- When viewing other designs and wishing to implement code, allows for easy reference and copying
+
+> Security
+ A potential issue with an HTML editor is that an attacker can easily use the HTML editor to gain access to data stored on our website. While we trust the other people at our school, and are not concerned with people viewing so called private designs while our website is in the testing phase, it is important to ensure that somebody cannot inject code to access private data or destroy our website. This issues arises as if HTML code that is inputted is displayed on our website, anybody essentially has full control over our website. 
+ Potential fixes:
+ - Find a workaround that doesn't require HTML. This would be difficult but ideal
+ - Somehow encapsulate the provided HTML in a separate container that prevents it from having access to the rest of the code and only displays within itself. This might still have loopholes, and requires lots of research, but is what we strive for.
 
 ### Private versus Public designs
 

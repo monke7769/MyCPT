@@ -64,9 +64,12 @@ ian
 - There will also be numerous types of animations to manipulate elements, akin to google slide element animations
 - There will also be "mix-and-matchable" buttons and animations -> allows for the use of certain button designs and a different animation
 
+![Image](../../../images/animationDiagram.png)
+
 #### Transition
 
-srijan
+- The plan for implementing transitions into our website is to:
+
 
 #### Box Shadow
 

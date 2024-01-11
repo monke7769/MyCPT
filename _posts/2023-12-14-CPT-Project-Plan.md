@@ -72,13 +72,9 @@ ian
 
 ## Finding Designs
 
-hayden
-
 - we will tag will the designs with certain words/hashtags in smaller font at the top of each page and create a search function (more specifics will be researched later)
 
 ## Like and Dislike designs
-
-hayden
 
 - CSS button to upvote/downvote designs +/- 1 vote
 - score for a single design will be stored in the backend database

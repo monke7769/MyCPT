@@ -76,7 +76,7 @@ ian
 
 The display page for one design as shown below:
 
-![elprimo](../../../ElPrimoDesign.png)
+![elprimo](../../../images/ElPrimoDesign.png)
 
 ## Like and Dislike designs
 

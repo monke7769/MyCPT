@@ -23,8 +23,6 @@ rendering the process an engaging exploration rather than an arduous enigma.
 # Frontend
 ## Page Designs
 
-Sensei Wu Revealed. IN ACTION!
-
 ryan
 
 Initial Design

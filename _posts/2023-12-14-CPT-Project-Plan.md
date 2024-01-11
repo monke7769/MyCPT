@@ -118,5 +118,4 @@ The display page for one design as shown below:
 
 ![](../../../images/IdeationAImageDiagramBackend.png)
 
-The Image Diagram is above
 

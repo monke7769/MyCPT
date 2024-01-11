@@ -29,6 +29,9 @@ Initial Design
 Canva: 
 ![canva](../../../images/canva.png)
 
+Main Page
+![main](../../../images/mainpage.png)
+
 
 ## HTML + CSS Editor
 

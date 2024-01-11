@@ -21,16 +21,6 @@ Envision this as a digital compass, directing you towards a seamless fusion of c
 rendering the process an engaging exploration rather than an arduous enigma.
 
 # Frontend
-## Page Designs
-
-Sensei Wu Revealed. IN ACTION!
-![Sensei Wu Spinjitzu](../../../images/Master_Wu.webp)
-
-
-ryan
-
-Initial Design
-![John's Image](../../../images/initial.png)
 
 Canva: 
 ![canva](../../../images/canva.png)
@@ -48,6 +38,8 @@ Our design consists of an HTML and CSS editor in the page. This seems somewhat r
  Potential fixes:
  - Find a workaround that doesn't require HTML. This would be difficult but ideal
  - Somehow encapsulate the provided HTML in a separate container that prevents it from having access to the rest of the code and only displays within itself. This might still have loopholes, and requires lots of research, but is what we strive for.
+ - Send current logged in user's password with request body and check with password in order to verify proper user is request designs.
+ ![diagram](../../../images/yes.png)
 
 ### Private versus Public designs
 
@@ -64,9 +56,6 @@ ian
 - There will also be numerous types of animations to manipulate elements, akin to google slide element animations
 - There will also be "mix-and-matchable" buttons and animations -> allows for the use of certain button designs and a different animation
 
-#### Transition
-
-srijan
 
 #### Box Shadow
 
@@ -74,6 +63,7 @@ srijan
 
 #### Others
 
+transitions, fonts, images
 srijan
 
 ## Finding Designs

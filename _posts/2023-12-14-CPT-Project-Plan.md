@@ -23,8 +23,6 @@ rendering the process an engaging exploration rather than an arduous enigma.
 # Frontend
 ## Page Designs
 
-ryan
-
 Initial Design
 ![John's Image](../../../images/initial.png)
 
@@ -44,10 +42,13 @@ Our design consists of an HTML and CSS editor in the page. This seems somewhat r
  Potential fixes:
  - Find a workaround that doesn't require HTML. This would be difficult but ideal
  - Somehow encapsulate the provided HTML in a separate container that prevents it from having access to the rest of the code and only displays within itself. This might still have loopholes, and requires lots of research, but is what we strive for.
+ - other solution: ban javascript, but removes functionality
+ ![diagram](../../../images/yes.png)
 
 ### Private versus Public designs
 
-ian
+Our website will allow users to make public designs for sharing, and private designs as references for themselves later. A diagram of how the database will handle this is show below.
+![diagam](../../../images/maybe.png)
 
 ### CSS Helpers - Display
 
@@ -60,21 +61,16 @@ ian
 - There will also be numerous types of animations to manipulate elements, akin to google slide element animations
 - There will also be "mix-and-matchable" buttons and animations -> allows for the use of certain button designs and a different animation
 
-#### Transition
-
-srijan
+![Image](../../../images/animationDiagram.png)
 
 #### Box Shadow
 
-srijan
+- Box shadow is pretty complicated, as a result, we plan to use a menu and presets to simplify the process
+- Generally, box shadow is a string of 20 numbers or so. This is overly complex so what we plan on doing is having a scrolling menu that indicates each number with its purpose for easier modification
 
-#### Others
-
-srijan
+![Image](../../../images/boxShadow.png)
 
 ## Finding Designs
-
-hayden
 
 - we will tag will the designs with certain words/hashtags in smaller font at the top of each page and create a search function (more specifics will be researched later)
 
@@ -84,16 +80,17 @@ The display page for one design as shown below:
 
 ## Like and Dislike designs
 
-hayden
-
 - CSS button to upvote/downvote designs +/- 1 vote
 - score for a single design will be stored in the backend database
+
+#### Others
+
+- Other plans will be placed here as we come up with them
+
 
 # Backend
 
 ## User Accounts, Database
-
-hayden
 
 - we will have a mySQL database for the website to hold different user accounts they can log in with
 - account login will include username and password

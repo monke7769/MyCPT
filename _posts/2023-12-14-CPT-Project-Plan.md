@@ -48,6 +48,8 @@ Our design consists of an HTML and CSS editor in the page. This seems somewhat r
  Potential fixes:
  - Find a workaround that doesn't require HTML. This would be difficult but ideal
  - Somehow encapsulate the provided HTML in a separate container that prevents it from having access to the rest of the code and only displays within itself. This might still have loopholes, and requires lots of research, but is what we strive for.
+ - other solution: ban javascript, but removes functionality
+ ![diagram](../../../images/yes.png)
 
 ### Private versus Public designs
 

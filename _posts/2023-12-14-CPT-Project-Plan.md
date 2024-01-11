@@ -68,18 +68,12 @@ ian
 
 ![Image](../../../images/animationDiagram.png)
 
-#### Transition
-
-- The plan for implementing transitions into our website is to:
-
-
 #### Box Shadow
 
-srijan
+- Box shadow is pretty complicated, as a result, we plan to use a menu and presets to simplify the process
+- Generally, box shadow is a string of 20 numbers or so. This is overly complex so what we plan on doing is having a scrolling menu that indicates each number with its purpose for easier modification
 
-#### Others
-
-srijan
+![Image](../../../images/boxShadow.png)
 
 ## Finding Designs
 
@@ -93,6 +87,11 @@ hayden
 
 - CSS button to upvote/downvote designs +/- 1 vote
 - score for a single design will be stored in the backend database
+
+#### Others
+
+- Other plans will be placed here as we come up with them
+
 
 # Backend
 

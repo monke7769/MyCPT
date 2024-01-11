@@ -23,9 +23,6 @@ rendering the process an engaging exploration rather than an arduous enigma.
 # Frontend
 ## Page Designs
 
-Sensei Wu Revealed. IN ACTION!
-![Sensei Wu Spinjitzu](../../../images/Master_Wu.webp)
-
 
 ryan
 
@@ -97,8 +94,6 @@ hayden
 # Backend
 
 ## User Accounts, Database
-
-hayden
 
 - we will have a mySQL database for the website to hold different user accounts they can log in with
 - account login will include username and password

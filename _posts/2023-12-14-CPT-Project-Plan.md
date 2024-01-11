@@ -53,7 +53,8 @@ Our design consists of an HTML and CSS editor in the page. This seems somewhat r
 
 ### Private versus Public designs
 
-ian
+Our website will allow users to make public designs for sharing, and private designs as references for themselves later. A diagram of how the database will handle this is show below.
+![diagam](../../../images/no.png)
 
 ### CSS Helpers - Display
 

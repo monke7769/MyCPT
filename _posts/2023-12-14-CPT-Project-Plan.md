@@ -78,6 +78,10 @@ hayden
 
 - we will tag will the designs with certain words/hashtags in smaller font at the top of each page and create a search function (more specifics will be researched later)
 
+The display page for one design as shown below:
+
+![elprimo](../../../ElPrimoDesign.png)
+
 ## Like and Dislike designs
 
 hayden

@@ -53,11 +53,6 @@ Our design consists of an HTML and CSS editor in the page. This seems somewhat r
 Our website will allow users to make public designs for sharing, and private designs as references for themselves later. A diagram of how the database will handle this is show below.
 ![diagam](../../../images/maybe.png)
 
-### CSS Helpers - Display
-
-(i.e. padding)
-ian
-
 #### Animation
 
 - The plan for animations is that the user will be able to select an element, then select the path that the element will travel in the page

@@ -76,6 +76,10 @@ The display page for one design as shown below:
 
 ![elprimo](../../../images/ElPrimoDesign.png)
 
+The search page listing will look like this:
+
+![search](../../../images/SearchFunction.png)
+
 ## Like and Dislike designs
 
 - CSS button to upvote/downvote designs +/- 1 vote

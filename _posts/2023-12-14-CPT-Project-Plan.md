@@ -117,3 +117,5 @@ The search page listing will look like this:
 
 ![Image](../../../images/IdeationAImageDiagramBackend.png)
 
+
+# testing the new commit method

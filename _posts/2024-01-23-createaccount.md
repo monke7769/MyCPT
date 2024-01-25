@@ -7,7 +7,7 @@
       var password = document.getElementById("password").value;
       var confirmPassword = document.getElementById("confirmPassword").value;
       if (password !== confirmPassword) {
-        alert("Passwords do not match. Try again");
+        alert("Passwords do not match. Try again.");
         return false;
       } 
       validUsernames[username] = password;
@@ -18,17 +18,19 @@
 </head>
 <body>
 
+<link rel="stylesheet" href="../../../assets/css/loginpage.css">
+
+
 <h2>Create Account Page</h2>
+<div class="accountContainer">
+  <form onsubmit="return checkPW()">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <label for="confirmPassword">Confirm Password:</label><br>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+    <input type="submit" value="Submit">
+  </form> 
 
-<form onsubmit="return checkPW()">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username" required><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password" required><br>
-  <label for="confirmPassword">Confirm Password:</label><br>
-  <input type="password" id="confirmPassword" name="confirmPassword" required><br>
-  <input type="submit" value="Submit">
-</form> 
-
-</body>
-</html>
+</div>

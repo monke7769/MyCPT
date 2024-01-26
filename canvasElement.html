@@ -1,0 +1,111 @@
+---
+layout: base
+permalink: /canvas/
+title: Canvas Element Experiment
+search_exclude: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resizable Lines Canvas</title>
+    <style>
+        body {
+            display: flex;
+        }
+
+        #toolbar {
+            width: 50px;
+            background-color: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        canvas {
+            border: 1px solid #000;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <div id="toolbar">
+        <label for="colorPicker">Color:</label>
+        <input type="color" id="colorPicker" value="#000000">
+    </div>
+
+    <canvas id="resizableCanvas" width="800" height="600"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('resizableCanvas');
+            const ctx = canvas.getContext('2d');
+            const colorPicker = document.getElementById('colorPicker');
+            let isDrawing = false;
+            let lines = [];
+
+            function drawLines() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                lines.forEach(line => {
+                    ctx.beginPath();
+                    ctx.moveTo(line.start.x, line.start.y);
+                    ctx.lineTo(line.end.x, line.end.y);
+                    ctx.strokeStyle = line.color;
+                    ctx.stroke();
+                });
+            }
+
+            function resizeCanvas() {
+                const { width, height } = canvas.getBoundingClientRect();
+                canvas.width = width;
+                canvas.height = height;
+                drawLines();
+            }
+
+            function startDrawing(e) {
+                isDrawing = true;
+                lines.push({
+                    start: getMousePosition(e),
+                    end: getMousePosition(e),
+                    color: colorPicker.value
+                });
+                drawLines();
+            }
+
+            function continueDrawing(e) {
+                if (!isDrawing) return;
+                lines[lines.length - 1].end = getMousePosition(e);
+                drawLines();
+            }
+
+            function stopDrawing() {
+                isDrawing = false;
+            }
+
+            function getMousePosition(e) {
+                const rect = canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', continueDrawing);
+            window.addEventListener('mouseup', stopDrawing);
+
+            colorPicker.addEventListener('input', function() {
+                lines[lines.length - 1].color = colorPicker.value;
+                drawLines();
+            });
+
+            // Initial canvas setup
+            resizeCanvas();
+        });
+    </script>
+</body>
+</html>

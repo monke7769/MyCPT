@@ -1,0 +1,115 @@
+---
+layout: base
+permalink: /slider/
+title: Canvas Element Experiment
+search_exclude: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Button Generator</title>
+<style>
+    #sliderContainer {
+        float: left;
+        border: 3px solid white;
+        padding-right: 100px;
+        padding-left: 30px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        width: 48%;
+        height: 90%;
+    }
+    #buttonContainer {
+        float: right;
+        margin-top: 10px;
+        padding-right: 100px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        width: 48%;
+        height: 90%;
+        border: 3px solid white;
+    }
+    
+</style>
+</head>
+<body>
+<div id="sliderContainer">
+    <label for="widthSlider">Width:</label>
+    <input type="range" id="widthSlider" min="10" max="200" value="100"><br>
+    <label for="heightSlider">Height:</label>
+    <input type="range" id="heightSlider" min="10" max="200" value="50"><br>
+    <label for="buttonColorSlider">Button Color:</label>
+    <input type="color" id="buttonColorSlider" value="#ff0000"><br>
+    <label for="textColorSlider">Text Color:</label>
+    <input type="color" id="textColorSlider" value="#fff"><br>
+    <label for="borderColorSlider">Border Color:</label>
+    <input type="color" id="borderColorSlider" value="#ffffff"><br>
+    <label for="borderWidthSlider">Border Width:</label>
+    <input type="range" id="borderWidthSlider" min="1" max="30" value="5"><br>
+    <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
+</div>
+
+<div id="buttonContainer">
+    <div id="buttonPreview"></div>
+</div>
+
+<script>
+    const widthSlider = document.getElementById('widthSlider');
+    const heightSlider = document.getElementById('heightSlider');
+    const borderWidthSlider = document.getElementById('borderWidthSlider');
+    const buttonColorSlider = document.getElementById('buttonColorSlider');
+    const textColorSlider = document.getElementById('textColorSlider');
+    const borderColorSlider = document.getElementById('borderColorSlider');
+    const generateButton = document.getElementById('generateButton');
+    const buttonPreview = document.getElementById('buttonPreview');
+    const buttonCodeTextarea = document.getElementById('buttonCode');
+
+    function createButton(width, height, buttonColor, textColor, borderColor, borderWidth) {
+        const button = document.createElement('button');
+        button.style.width = `${width}px`;
+        button.style.height = `${height}px`;
+        button.style.backgroundColor = buttonColor;
+        button.style.color = textColor;
+        button.style.border = `${borderWidth}px solid ${borderColor}`;
+        button.textContent = 'Click Me';
+        button.addEventListener('click', function() {
+            alert('Button clicked!');
+        });
+        return button;
+    }
+    
+    function generateButtonCode(width, height, buttonColor, textColor, borderColor, borderWidth) {
+        const buttonCode = `<button style="width: ${width}px; height: ${height}px; background-color: ${buttonColor}; color: ${textColor}; border: ${borderWidth}px solid ${borderColor};"></button>`;
+        buttonCodeTextarea.value = buttonCode;
+    }
+
+    function updateButtonPreview() {
+        const buttonWidth = parseInt(widthSlider.value);
+        const buttonHeight = parseInt(heightSlider.value);
+        const borderWidth = parseInt(borderWidthSlider.value);
+        const buttonColor = buttonColorSlider.value;
+        const textColor = textColorSlider.value;
+        const borderColor = borderColorSlider.value;
+        const button = createButton(buttonWidth, buttonHeight, buttonColor, textColor, borderColor, borderWidth);
+        buttonPreview.innerHTML = '';
+        buttonPreview.appendChild(button);
+        generateButtonCode(buttonWidth, buttonHeight, buttonColor, textColor, borderColor, borderWidth);
+    }
+
+    generateButtonCode();
+    updateButtonPreview();
+
+    widthSlider.addEventListener('input', updateButtonPreview);
+    heightSlider.addEventListener('input', updateButtonPreview);
+    buttonColorSlider.addEventListener('input', updateButtonPreview);
+    textColorSlider.addEventListener('input', updateButtonPreview);
+    borderColorSlider.addEventListener('input', updateButtonPreview);
+    borderWidthSlider.addEventListener('input', updateButtonPreview);
+</script>
+
+</body>
+</html>

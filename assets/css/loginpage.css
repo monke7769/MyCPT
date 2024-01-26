@@ -1,0 +1,24 @@
+h2 {
+    text-shadow: 0 0 5px rgba(144, 238, 144, 200);
+    text-align: center;
+}
+
+#password {
+    box-shadow: 0 0 100px rgba(68, 68, 166, 1.0);
+}
+
+.loginContainer {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border: 5px solid;
+    border-color: white;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.accountContainer{
+    text-align: center;
+    align-items: center;
+}

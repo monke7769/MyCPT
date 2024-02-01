@@ -9,6 +9,7 @@ search_exclude: true
 <html lang="en">
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactive Button Generator</title>
@@ -25,6 +26,16 @@ search_exclude: true
     }
     #buttonContainer {
         float: right;
+        margin-top: 10px;
+        padding-right: 100px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        width: 48%;
+        height: 90%;
+        border: 3px solid white;
+    }
+    #codeContainer {
         margin-top: 10px;
         padding-right: 100px;
         padding-left: 30px;
@@ -51,11 +62,14 @@ search_exclude: true
     <input type="color" id="borderColorSlider" value="#ffffff"><br>
     <label for="borderWidthSlider">Border Width:</label>
     <input type="range" id="borderWidthSlider" min="1" max="30" value="5"><br>
-    <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
 </div>
 
 <div id="buttonContainer">
     <div id="buttonPreview"></div>
+</div>
+
+<div id="codeContainer" style="display:none;">
+    <textarea id="buttonCode" style="margin-top: 10%;" rows="4" cols="30" readonly></textarea>
 </div>
 
 <script>
@@ -79,6 +93,7 @@ search_exclude: true
         button.textContent = 'Click Me';
         button.addEventListener('click', function() {
             $("#sliderContainer").toggle();
+            $("#codeContainer").toggle();
         });
         return button;
     }

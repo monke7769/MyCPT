@@ -4,6 +4,8 @@ title: About Me
 permalink: /about/
 ---
 
-A Fastpages clone, for CSA - Tirth Thakkar & Haseeb Beg
+A simple website with some basic binary image tools.
+Created by Hayden, Ian, Srijan, Ryan, and Tarun
+
 
 

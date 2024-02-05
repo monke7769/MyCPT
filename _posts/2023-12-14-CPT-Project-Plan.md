@@ -116,4 +116,3 @@ The search page listing will look like this:
 - The review system will fetch reviews from a database that will contain date the review was made, the author, likes and dislikes, and more
 
 ![Image](../../../images/IdeationAImageDiagramBackend.png)
-

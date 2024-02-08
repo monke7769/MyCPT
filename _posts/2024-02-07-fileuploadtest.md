@@ -18,13 +18,14 @@
                 reader.onload = () => {
                     console.log("here");
                     base64String = btoa(reader.result); // convergin to base 64
-                    console.log(base64String);
+                    
                 }
             } 
             
             else {
                 console.error('No file selected.');
             }
+            // console.log(base64String);
 
             const url ='http://127.0.0.1:8086/api/users/design';
             const body = {
@@ -34,6 +35,7 @@
                 type:"public",
 
             };
+            console.log(body);
 
             // Change options according to Authentication requirements
             const authOptions = {

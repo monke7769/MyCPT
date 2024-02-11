@@ -30,7 +30,7 @@
             // check for response errors and display
             if (response.status !== 200) {
                 const errorMsg = 'Database response error: ' + response.status;
-                window.location.href = "http://127.0.0.1:4200/student/2024/01/31/401error.html";
+                window.location.href = "http://127.0.0.1:4100/CPT/2024/01/31/401error.html";
                 console.log(errorMsg);
                 const tr = document.createElement("tr");
                 const td = document.createElement("td");
@@ -101,7 +101,7 @@
             // check for response errors and display
             if (response.status !== 200) {
                 const errorMsg = 'Database response error: ' + response.status;
-                window.location.href = "http://127.0.0.1:4200/student/2024/01/31/403error.html";
+                window.location.href = "http://127.0.0.1:4100/CPT/2024/01/31/401error.html";
                 console.log(errorMsg);
                 const tr = document.createElement("tr");
                 const td = document.createElement("td");
@@ -114,7 +114,7 @@
             response.json().then(data => {
                 console.log("worked");
                 console.log(data);
-                 window.location.href = "http://127.0.0.1:4200/student/2024/01/30/DataTable.html";
+                 window.location.href = "http://127.0.0.1:4100/CPT/2024/01/30/DataTable.html";
             })
             // catch fetch errors (i.e., ACCESS to server blocked)
             .catch(err => {
@@ -170,12 +170,12 @@
           .then(response => {
             // check for response errors and display
             if (response.status !== 200) {
-                window.location.href = "http://127.0.0.1:4200/student/2024/01/31/403error.html";
+                window.location.href = "http://127.0.0.1:4100/CPT/2024/01/31/401error.html";
             }
             // valid response will contain JSON data
             response.json().then(data => {
               // insert whatever code you want here
-              window.location.href="http://127.0.0.1:4200/student/2024/01/30/DataTable.html"; // reload pge
+              window.location.href="http://127.0.0.1:4100/CPT/2024/01/30/DataTable.html"; // reload pge
             })
         })
         // catch fetch errors (ie ACCESS to server blocked)

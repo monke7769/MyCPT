@@ -39,8 +39,10 @@ search_exclude: true
 </head>
 <body>
 <div id="sliderContainer" style="display:none;">
-    <label for="namer">Name:</label>
-    <input type="text" id="nameInput">
+    <label class="publicSwitch">Public:</label>
+    <input id="publicInput" type="checkbox"><br>
+    <label for="namer">Name:</label><br>
+    <input type="text" id="nameInput"><br>
     <label for="widthSlider">Width:</label>
     <input type="range" id="widthSlider" min="10" max="200" value="100"><br>
     <label for="heightSlider">Height:</label>
@@ -57,10 +59,10 @@ search_exclude: true
 </div>
 
 <div id="saveButton" style="display:none;">
-    <button>Save</button>
+    <button onclick="saveButton(nameInput.value)">Save</button>
 </div>
 
-<div id="buttonContainer" onclick="saveButton()">
+<div id="buttonContainer">
     <div id="buttonPreview"></div>
 </div>
 
@@ -75,6 +77,7 @@ search_exclude: true
     const buttonPreview = document.getElementById('buttonPreview');
     const buttonCodeTextarea = document.getElementById('buttonCode');
     const nameInput = document.getElementById("nameInput");
+    const publicInput = document.getElementById("publicInput");
 
     function createButton(width, height, buttonColor, textColor, borderColor, borderWidth) {
         const button = document.createElement('button');
@@ -119,39 +122,78 @@ search_exclude: true
     borderColorSlider.addEventListener('input', updateButtonPreview);
     borderWidthSlider.addEventListener('input', updateButtonPreview);
 
+    savedAlready = 0;
+
     function saveButton(name) { 
+        savedAlready += 1
         const url ='http://127.0.0.1:8086/api/users/design';
-        const body = {
-            name: nameInput.value,
-            content: buttonCode,
-            type: 'public'
+        console.log(nameInput.value)
+        if (publicInput.checked == true) {
+            type = "public"
+        }
+        else {
+            type = "private"
         }
 
-        const authOptions = {
-            mode: 'cors', // no-cors, *cors, same-origin
-            credentials: 'include', // include, same-origin, omit
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST', // Override the method property
-            cache: 'no-cache', // Set the cache property
-            body: JSON.stringify(body)
-        };
+        const body = {
+            name: name,
+            content: buttonCode.value,
+            type: type
+        }
 
-        fetch(url, authOptions)
-        .then(response => {
-            // handle error response from Web API
-            if (!response.ok) {
-                const errorMsg = 'Save error: ' + response.status;
-                console.log(errorMsg);
-                return;
-            }
-        })
-        // catch fetch errors (ie ACCESS to server blocked)
-        .catch(err => {
-            window.location.href = "http://127.0.0.1:4200/CPT/404.html"
-            console.error(err);
-        });
+        if (savedAlready == 1) {
+            const authOptions = {
+                mode: 'cors', // no-cors, *cors, same-origin
+                credentials: 'include', // include, same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST', // Override the method property
+                cache: 'no-cache', // Set the cache property
+                body: JSON.stringify(body)
+            };
+
+            fetch(url, authOptions)
+            .then(response => {
+                // handle error response from Web API
+                if (!response.ok) {
+                    const errorMsg = 'Save error: ' + response.status;
+                    console.log(errorMsg);
+                    return;
+                }
+            })
+            // catch fetch errors (ie ACCESS to server blocked)
+            .catch(err => {
+                console.log(body);
+                console.error(err);
+            });
+        } else {
+            const authOptions = {
+                mode: 'cors', // no-cors, *cors, same-origin
+                credentials: 'include', // include, same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'PUT', // Override the method property
+                cache: 'no-cache', // Set the cache property
+                body: JSON.stringify(body)
+            };
+
+            fetch(url, authOptions)
+            .then(response => {
+                // handle error response from Web API
+                if (!response.ok) {
+                    const errorMsg = 'Save error: ' + response.status;
+                    console.log(errorMsg);
+                    return;
+                }
+            })
+            // catch fetch errors (ie ACCESS to server blocked)
+            .catch(err => {
+                console.log(body);
+                console.error(err);
+            });
+        }
     }
 
 </script>

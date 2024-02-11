@@ -1,4 +1,5 @@
 <html lang="en">
+<p1>Search for designs!</p1>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,6 @@
         .toggle-buttons {
             display: inline-block;
         }
-        
         .toggle-buttons button {
             background-color: #ccc;
             border: none;
@@ -37,9 +37,9 @@
             <button id="privateBtn" type="button" onclick="toggleButtons('privateBtn')">Private</button>
         </div>
     </form>
+    <div id="tableContainer"></div>
     <script>
         var ian;
-
         function toggleButtons(activeButtonId) {
             var buttons = document.querySelectorAll('.toggle-buttons button');
             buttons.forEach(function(button) {
@@ -50,19 +50,71 @@
                 }
             });
         }
-
         function checkButton() {
             var publicBtn = document.getElementById('publicBtn');
             var isPublicActive = publicBtn.classList.contains('active');
             if (isPublicActive) {
-                alert('Public button is active!');
                 ian = "public";
+                getPublic();
             } else {
-                alert('Private button is active!');
                 ian = "private";
+                getPrivate();
             }
-            console.log(ian); // just for testing purposes
+            console.log(ian); // troubleshooting
             return false; // Prevent form submission for demonstration purposes
+        }
+        function getPublic() {
+            // Making the GET request (public)
+            fetch('http://127.0.0.1:8086/api/users/search')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data); // Handle the data returned from the server
+                    displayDataInTable(data.Designs);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+        function getPrivate() {
+            // Making the GET request (private)
+            // MUST UPDATE LATER!!!
+            //
+            //
+            fetch('http://127.0.0.1:8086/api/users/search')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data); // Handle the data returned from the server
+                    displayDataInTable(data.Designs);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+        function displayDataInTable(data) {
+            var tableContainer = document.getElementById('tableContainer');
+            var tableHTML = '<table>';
+            tableHTML += '<tr><th>Name</th><th>Content</th><th>Likes</th><th>Dislikes</th><th>Type</th></tr>';
+            data.forEach(function(item) {
+                tableHTML += '<tr>';
+                tableHTML += '<td>' + item.Name + '</td>';
+                tableHTML += '<td>' + (item.Content || '') + '</td>';
+                tableHTML += '<td>' + item.Likes + '</td>';
+                tableHTML += '<td>' + item.Dislikes + '</td>';
+                tableHTML += '<td>' + item.Type + '</td>';
+                tableHTML += '</tr>';
+            });
+            tableHTML += '</table>';
+            tableContainer.innerHTML = tableHTML;
         }
 
         document.getElementById('search').addEventListener('keypress', function(e) {
@@ -71,5 +123,3 @@
             }
         });
     </script>
-</body>
-</html>

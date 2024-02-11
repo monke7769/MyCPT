@@ -1,7 +1,7 @@
 ---
 layout: base
-permalink: /slider/
-title: Canvas Element Experiment
+permalink: /create-design/
+title: Create a Design
 search_exclude: true
 ---
 
@@ -39,6 +39,8 @@ search_exclude: true
 </head>
 <body>
 <div id="sliderContainer" style="display:none;">
+    <label for="namer">Name:</label>
+    <input type="text" id="nameInput">
     <label for="widthSlider">Width:</label>
     <input type="range" id="widthSlider" min="10" max="200" value="100"><br>
     <label for="heightSlider">Height:</label>
@@ -54,7 +56,11 @@ search_exclude: true
     <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
 </div>
 
-<div id="buttonContainer">
+<div id="saveButton" style="display:none;">
+    <button>Save</button>
+</div>
+
+<div id="buttonContainer" onclick="saveButton()">
     <div id="buttonPreview"></div>
 </div>
 
@@ -68,6 +74,7 @@ search_exclude: true
     const generateButton = document.getElementById('generateButton');
     const buttonPreview = document.getElementById('buttonPreview');
     const buttonCodeTextarea = document.getElementById('buttonCode');
+    const nameInput = document.getElementById("nameInput");
 
     function createButton(width, height, buttonColor, textColor, borderColor, borderWidth) {
         const button = document.createElement('button');
@@ -79,6 +86,7 @@ search_exclude: true
         button.textContent = 'Click Me';
         button.addEventListener('click', function() {
             $("#sliderContainer").toggle();
+            $('#saveButton').toggle();
         });
         return button;
     }
@@ -110,6 +118,42 @@ search_exclude: true
     textColorSlider.addEventListener('input', updateButtonPreview);
     borderColorSlider.addEventListener('input', updateButtonPreview);
     borderWidthSlider.addEventListener('input', updateButtonPreview);
+
+    function saveButton(name) { 
+        const url ='http://127.0.0.1:8086/api/users/design';
+        const body = {
+            name: nameInput.value,
+            content: buttonCode,
+            type: 'public'
+        }
+
+        const authOptions = {
+            mode: 'cors', // no-cors, *cors, same-origin
+            credentials: 'include', // include, same-origin, omit
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST', // Override the method property
+            cache: 'no-cache', // Set the cache property
+            body: JSON.stringify(body)
+        };
+
+        fetch(url, authOptions)
+        .then(response => {
+            // handle error response from Web API
+            if (!response.ok) {
+                const errorMsg = 'Save error: ' + response.status;
+                console.log(errorMsg);
+                return;
+            }
+        })
+        // catch fetch errors (ie ACCESS to server blocked)
+        .catch(err => {
+            window.location.href = "http://127.0.0.1:4200/CPT/404.html"
+            console.error(err);
+        });
+    }
+
 </script>
 
 </body>

@@ -80,10 +80,10 @@
                     console.error('There was a problem with the fetch operation:', error);
                 });
         }
-        function getAuthToken() {
+//        function getAuthToken() {
             // Retrieve the authentication token from cookies
-            return document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*=\s*([^;]*).*$)|^.*$/, "$1");
-}
+//            return document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*=\s*([^;]*).*$)|^.*$/, "$1");
+//}
         function getPrivate() {
             // Making the GET request (private)
             // MUST UPDATE LATER!!!

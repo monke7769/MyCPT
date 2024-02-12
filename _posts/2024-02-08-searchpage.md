@@ -50,9 +50,14 @@
                 }
             });
         }
+        function getSearchTerm() {
+            return document.getElementById('search').value.trim();
+        }
         function checkButton() {
             var publicBtn = document.getElementById('publicBtn');
             var isPublicActive = publicBtn.classList.contains('active');
+            var searchTerm = document.getElementById('search').value.trim();
+            console.log(searchTerm);
             if (isPublicActive) {
                 ian = "public";
                 getPublic();
@@ -111,15 +116,19 @@
         function displayDataInTable(data) {
             var tableContainer = document.getElementById('tableContainer');
             var tableHTML = '<table>';
+            const searchTerm = getSearchTerm();
             tableHTML += '<tr><th>Name</th><th>Content</th><th>Likes</th><th>Dislikes</th><th>Type</th></tr>';
             data.forEach(function(item) {
-                tableHTML += '<tr>';
-                tableHTML += '<td>' + item.Name + '</td>';
-                tableHTML += '<td>' + (item.Content || '') + '</td>';
-                tableHTML += '<td>' + item.Likes + '</td>';
-                tableHTML += '<td>' + item.Dislikes + '</td>';
-                tableHTML += '<td>' + item.Type + '</td>';
-                tableHTML += '</tr>';
+                // Check if searchTerm is a substring of Name or Content
+                if (searchTerm && (item.Name.includes(searchTerm) || (item.Content && item.Content.includes(searchTerm)))) {
+                    tableHTML += '<tr>';
+                    tableHTML += '<td>' + item.Name + '</td>';
+                    tableHTML += '<td>' + (item.Content || '') + '</td>';
+                    tableHTML += '<td>' + item.Likes + '</td>';
+                    tableHTML += '<td>' + item.Dislikes + '</td>';
+                    tableHTML += '<td>' + item.Type + '</td>';
+                    tableHTML += '</tr>';
+                }
             });
             tableHTML += '</table>';
             tableContainer.innerHTML = tableHTML;

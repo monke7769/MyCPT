@@ -12,62 +12,94 @@ search_exclude: true
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactive Button Generator</title>
-<style>
-    #sliderContainer {
-        float: left;
-        border: 3px solid white;
-        padding-right: 100px;
-        padding-left: 30px;
-        padding-bottom: 20px;
-        padding-top: 20px;
-        width: 48%;
-        height: 90%;
-    }
-    #buttonContainer {
-        float: right;
-        margin-top: 10px;
-        padding-right: 100px;
-        padding-left: 30px;
-        padding-bottom: 30px;
-        padding-top: 30px;
-        width: 48%;
-        height: 90%;
-        border: 3px solid white;
-    }
-    #popup {
-        color: black;
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-    }
-    .popup-content {
-        color: black;
-        background-color: #fff;
-        width: 300px;
-        padding: 20px;
-        border-radius: 5px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
+ <style>
+        #sliderContainer {
+            float: left;
+            border: 3px solid white;
+            padding-right: 100px;
+            padding-left: 30px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            width: 48%;
+            height: 90%;
+        }
+
+        #buttonContainer {
+            float: right;
+            margin-top: 10px;
+            padding-right: 100px;
+            padding-left: 30px;
+            padding-bottom: 30px;
+            padding-top: 30px;
+            width: 48%;
+            height: 90%;
+            border: 3px solid white;
+        }
+
+        #popup {
+            color: black;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        .popup-content {
+            color: black;
+            background-color: #fff;
+            width: 275px;
+            padding: 20px;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid rgb(71, 148, 197);
+            box-shadow: 0 0 35px rgb(30, 102, 190);
+        }
+
+        /* Updated Button Styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
     <div id="popup">
-        <div class="popup-content">
+        <div class="popup-content" style="margin-top: 0;">
             <h2>Create Design</h2>
             <p>Design Name</p>
             <input type="text" id="nameInput"><br>
             <p>Description</p>
             <input type="text" id="description"><br>
-            <label class="publicSwitch">Design Type (public or private):</label>
-            <select name="Design Type (public or private):" id="publicInput">
+            <br>
+            <label class="publicSwitch" style="font-weight: normal;">Design Type (public or private):</label><br><br>
+            <select name="Design Type (public or private):" id="publicInput"><br>
                 <option value="public">Public</option>
                 <option value="private">Private</option>
             </select><br><br>

@@ -89,28 +89,24 @@
             // MUST UPDATE LATER!!!
             //
             //
-            var authToken = getAuthToken();
-            console.log(authToken)
-            fetch('http://127.0.0.1:8086/api/users/search', {
-                method: 'PUT',
+            const authOptions = {
+                mode: 'cors', // no-cors, *cors, same-origin
+                credentials: 'include', // include, same-origin, omit
                 headers: {
-                    'Authorization': 'Bearer ' + authToken,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
+                method: 'PUT', // Override the method property
+            };
+            fetch('http://127.0.0.1:8086/api/users/search', authOptions)
+            .then(response => {
+                // handle error response from Web API
+                if (!response.ok) {
+                    const errorMsg = 'there was a skill issue ' + response.status;
+                    console.log(errorMsg);
+                    return;
+                }
+                displayDataInTable(data.Designs);
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('private requets succeeded', data);
-                    displayDataInTable(data.Designs);
-                })
-                .catch(error => {
-                    console.error('There was a problem with the PUT request:', error);
-                });
         }
         function displayDataInTable(data) {
             var tableContainer = document.getElementById('tableContainer');

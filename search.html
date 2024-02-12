@@ -1,3 +1,9 @@
+---
+layout: base
+permalink: /search/
+title: Search
+search_exclude: true
+---
 <html lang="en">
 <p1>Search for designs!</p1>
 <head>
@@ -65,11 +71,8 @@
                 ian = "private";
                 getPrivate();
             }
-            console.log(ian); // troubleshooting
-            return false; // Prevent form submission for demonstration purposes
         }
         function getPublic() {
-            // Making the GET request (public)
             fetch('http://127.0.0.1:8086/api/users/search')
                 .then(response => {
                     if (!response.ok) {
@@ -90,10 +93,7 @@
 //            return document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*=\s*([^;]*).*$)|^.*$/, "$1");
 //}
         function getPrivate() {
-            // Making the GET request (private)
-            // MUST UPDATE LATER!!!
-            //
-            //
+            // Making the GET request (public)
             const authOptions = {
                 mode: 'cors', // no-cors, *cors, same-origin
                 credentials: 'include', // include, same-origin, omit
@@ -103,15 +103,19 @@
                 method: 'PUT', // Override the method property
             };
             fetch('http://127.0.0.1:8086/api/users/search', authOptions)
-            .then(response => {
-                // handle error response from Web API
-                if (!response.ok) {
-                    const errorMsg = 'there was a skill issue ' + response.status;
-                    console.log(errorMsg);
-                    return;
-                }
-                displayDataInTable(data.Designs);
-            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data); // Handle the data returned from the server
+                    displayDataInTable(data.Designs);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
         }
         function displayDataInTable(data) {
             var tableContainer = document.getElementById('tableContainer');

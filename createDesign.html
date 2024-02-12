@@ -34,39 +34,122 @@ search_exclude: true
         height: 90%;
         border: 3px solid white;
     }
-    
+    #popup {
+        color: black;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+    .popup-content {
+        color: black;
+        background-color: #fff;
+        width: 300px;
+        padding: 20px;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 </style>
 </head>
 <body>
-<div id="sliderContainer" style="display:none;">
-    <label class="publicSwitch">Public:</label>
-    <input id="publicInput" type="checkbox"><br>
-    <label for="namer">Name:</label><br>
-    <input type="text" id="nameInput"><br>
-    <label for="widthSlider">Width:</label>
-    <input type="range" id="widthSlider" min="10" max="200" value="100"><br>
-    <label for="heightSlider">Height:</label>
-    <input type="range" id="heightSlider" min="10" max="200" value="50"><br>
-    <label for="buttonColorSlider">Button Color:</label>
-    <input type="color" id="buttonColorSlider" value="#ff0000"><br>
-    <label for="textColorSlider">Text Color:</label>
-    <input type="color" id="textColorSlider" value="#fff"><br>
-    <label for="borderColorSlider">Border Color:</label>
-    <input type="color" id="borderColorSlider" value="#ffffff"><br>
-    <label for="borderWidthSlider">Border Width:</label>
-    <input type="range" id="borderWidthSlider" min="1" max="30" value="5"><br>
-    <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
-</div>
-
-<div id="saveButton" style="display:none;">
-    <button onclick="saveButton(nameInput.value)">Save</button>
-</div>
-
-<div id="buttonContainer">
-    <div id="buttonPreview"></div>
-</div>
-
+    <div id="popup">
+        <div class="popup-content">
+            <h2>Create Design</h2>
+            <p>Design Name</p>
+            <input type="text" id="nameInput"><br>
+            <p>Description</p>
+            <input type="text" id="description"><br>
+            <label class="publicSwitch">Design Type (public or private):</label>
+            <select name="Design Type (public or private):" id="publicInput">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select><br><br>
+            <button onclick="closePopup()">CREATE!</button>
+        </div>
+    </div>
+    <div id="sliderContainer" style="display:none;">
+        <label for="widthSlider">Width:</label>
+        <input type="range" id="widthSlider" min="10" max="200" value="100"><br>
+        <label for="heightSlider">Height:</label>
+        <input type="range" id="heightSlider" min="10" max="200" value="50"><br>
+        <label for="buttonColorSlider">Button Color:</label>
+        <input type="color" id="buttonColorSlider" value="#ff0000"><br>
+        <label for="textColorSlider">Text Color:</label>
+        <input type="color" id="textColorSlider" value="#fff"><br>
+        <label for="borderColorSlider">Border Color:</label>
+        <input type="color" id="borderColorSlider" value="#ffffff"><br>
+        <label for="borderWidthSlider">Border Width:</label>
+        <input type="range" id="borderWidthSlider" min="1" max="30" value="5"><br>
+        <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
+    </div>
+    
+    <div id="saveButton" style="display:none;">
+        <button onclick="saveButton(nameInput.value)">Save</button>
+    </div>
+    
+    <div id="buttonContainer">
+        <div id="buttonPreview"></div>
+    </div>
 <script>
+    const url ='http://127.0.0.1:8086/api/users/design';
+    // Function to display the popup
+    function openPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+    // Function to close the popup
+    function closePopup() {
+        const name1 = document.getElementById("nameInput").value;
+        const publicInput1 = document.getElementById("publicInput").value;
+        const description = document.getElementById("description").value;
+        const body = {
+            name: name1,
+            content: "",
+            type: publicInput1,
+            description: description
+        }
+        console.log(name1)
+        if (name1.trim() !== "") {
+            const authOptions = {
+                mode: 'cors', // no-cors, *cors, same-origin
+                credentials: 'include', // include, same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST', // Override the method property
+                cache: 'no-cache', // Set the cache property
+                body: JSON.stringify(body)
+            };
+
+            fetch(url, authOptions)
+            .then(response => {
+                // handle error response from Web API
+                if (!response.ok) {
+                    const errorMsg = 'Creation error: ' + response.status;
+                    console.log(errorMsg);
+                    return;
+                }
+                document.getElementById("popup").style.display = "none";
+            })
+            // catch fetch errors (ie ACCESS to server blocked)
+            .catch(err => {
+                console.log(body);
+                console.error(err);
+            });
+        } else {
+            alert("Please enter a design name!");
+        }
+    }
+
+    // Call openPopup when the page loads
+    window.onload = openPopup;
     const widthSlider = document.getElementById('widthSlider');
     const heightSlider = document.getElementById('heightSlider');
     const borderWidthSlider = document.getElementById('borderWidthSlider');
@@ -76,8 +159,6 @@ search_exclude: true
     const generateButton = document.getElementById('generateButton');
     const buttonPreview = document.getElementById('buttonPreview');
     const buttonCodeTextarea = document.getElementById('buttonCode');
-    const nameInput = document.getElementById("nameInput");
-    const publicInput = document.getElementById("publicInput");
 
     function createButton(width, height, buttonColor, textColor, borderColor, borderWidth) {
         const button = document.createElement('button');
@@ -122,78 +203,37 @@ search_exclude: true
     borderColorSlider.addEventListener('input', updateButtonPreview);
     borderWidthSlider.addEventListener('input', updateButtonPreview);
 
-    savedAlready = 0;
-
     function saveButton(name) { 
-        savedAlready += 1
         const url ='http://127.0.0.1:8086/api/users/design';
-        console.log(nameInput.value)
-        if (publicInput.checked == true) {
-            type = "public"
-        }
-        else {
-            type = "private"
-        }
-
         const body = {
             name: name,
             content: buttonCode.value,
-            type: type
+            type: "",
         }
-
-        if (savedAlready == 1) {
-            const authOptions = {
-                mode: 'cors', // no-cors, *cors, same-origin
-                credentials: 'include', // include, same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST', // Override the method property
-                cache: 'no-cache', // Set the cache property
-                body: JSON.stringify(body)
-            };
-
-            fetch(url, authOptions)
-            .then(response => {
-                // handle error response from Web API
-                if (!response.ok) {
-                    const errorMsg = 'Save error: ' + response.status;
-                    console.log(errorMsg);
-                    return;
-                }
-            })
-            // catch fetch errors (ie ACCESS to server blocked)
-            .catch(err => {
-                console.log(body);
-                console.error(err);
-            });
-        } else {
-            const authOptions = {
-                mode: 'cors', // no-cors, *cors, same-origin
-                credentials: 'include', // include, same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'PUT', // Override the method property
-                cache: 'no-cache', // Set the cache property
-                body: JSON.stringify(body)
-            };
-
-            fetch(url, authOptions)
-            .then(response => {
-                // handle error response from Web API
-                if (!response.ok) {
-                    const errorMsg = 'Save error: ' + response.status;
-                    console.log(errorMsg);
-                    return;
-                }
-            })
-            // catch fetch errors (ie ACCESS to server blocked)
-            .catch(err => {
-                console.log(body);
-                console.error(err);
-            });
-        }
+        const authOptions = {
+            mode: 'cors', // no-cors, *cors, same-origin
+            credentials: 'include', // include, same-origin, omit
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT', // Override the method property
+            cache: 'no-cache', // Set the cache property
+            body: JSON.stringify(body)
+        };
+        fetch(url, authOptions)
+        .then(response => {
+            // handle error response from Web API
+            if (!response.ok) {
+                const errorMsg = 'Save error: ' + response.status;
+                console.log(errorMsg);
+                return;
+            }
+        })
+        // catch fetch errors (ie ACCESS to server blocked)
+        .catch(err => {
+            console.log(body);
+            console.error(err);
+        });
     }
 
 </script>

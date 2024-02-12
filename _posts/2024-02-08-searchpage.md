@@ -80,12 +80,24 @@
                     console.error('There was a problem with the fetch operation:', error);
                 });
         }
+        function getAuthToken() {
+            // Retrieve the authentication token from cookies
+            return document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*=\s*([^;]*).*$)|^.*$/, "$1");
+}
         function getPrivate() {
             // Making the GET request (private)
             // MUST UPDATE LATER!!!
             //
             //
-            fetch('http://127.0.0.1:8086/api/users/search')
+            var authToken = getAuthToken();
+            console.log(authToken)
+            fetch('http://127.0.0.1:8086/api/users/search', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Content-Type': 'application/json'
+                },
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -93,11 +105,11 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data); // Handle the data returned from the server
+                    console.log('private requets succeeded', data);
                     displayDataInTable(data.Designs);
                 })
                 .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
+                    console.error('There was a problem with the PUT request:', error);
                 });
         }
         function displayDataInTable(data) {
@@ -116,7 +128,6 @@
             tableHTML += '</table>';
             tableContainer.innerHTML = tableHTML;
         }
-
         document.getElementById('search').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 checkButton();

@@ -16,58 +16,54 @@
                
                 reader.readAsDataURL(file); // reading it in
                 reader.onload = () => {
-                    console.log("here");
+                    // console.log("here234");
+                    // console.log(reader.result);
                     base64String = btoa(reader.result); // convergin to base 64
-                    
-                }
+                    // console.log(base64String);
+                    const url = 'http://127.0.0.1:8086/api/users/images';
+                    const body = {
+                        
+                        Image: base64String
+                    };
+                    console.log(body);
+                    const AuthOptions = {
+                                mode: 'cors', // no-cors, *cors, same-origin
+                                credentials: 'include', // include, same-origin, omit
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                method: 'POST', // Override the method property
+                                cache: 'no-cache', // Set the cache property
+                                body: JSON.stringify(body)
+                            };
+                        // fetch the API
+                        fetch(url, AuthOptions)
+                        // response is a RESTful "promise" on any successful fetch
+                        .then(response => {
+                            // check for response errors and display
+                            if (response.status !== 200) {
+                                window.location.href = "http://127.0.0.1:4200/student/2024/01/31/403error.html";
+                            }
+                            // valid response will contain JSON data
+                            response.json().then(data => {
+                            // insert whatever code you want here
+                            window.location.href="http://127.0.0.1:4200/student/2024/01/30/DataTable.html"; // reload pge
+                            })
+                        })
+                        // catch fetch errors (ie ACCESS to server blocked)
+                        .catch(err => {
+                        console.log(err)
+                        });
+                                    
+                    }
             } 
             
             else {
                 console.error('No file selected.');
             }
-            // console.log(base64String);
+            
 
-            const url ='http://127.0.0.1:8086/api/users/design';
-            const body = {
-                name:"Tarun",
-                content:"content",
-                image:base64String,
-                type:"public",
-
-            };
-            console.log(body);
-
-            // Change options according to Authentication requirements
-            const authOptions = {
-                mode: 'cors', // no-cors, *cors, same-origin
-                credentials: 'include', // include, same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST', // Override the method property
-                cache: 'no-cache', // Set the cache property
-                body: JSON.stringify(body)
-            };
-
-            // Fetch JWT
-            fetch(url, authOptions)
-            .then(response => {
-                // handle error response from Web API
-                if (!response.ok) {
-                    const errorMsg = 'Login error: ' + response.status;
-                    console.log(errorMsg);
-                    return;
-                }
-                console.log("uploaded");
-                // Success!!!
-                // Redirect to the database page
-                
-            })
-            // catch fetch errors (ie ACCESS to server blocked)
-            .catch(err => {
-
-                console.error(err);
-            });
+            
                 // uploading to the database
 
         }

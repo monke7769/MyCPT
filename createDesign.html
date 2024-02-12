@@ -1,7 +1,7 @@
 ---
 layout: base
 permalink: /create-design/
-title: Create a Design
+title: Create Design
 search_exclude: true
 ---
 
@@ -133,9 +133,7 @@ search_exclude: true
             .then(response => {
                 // handle error response from Web API
                 if (!response.ok) {
-                    const errorMsg = 'Creation error: ' + response.status;
-                    console.log(errorMsg);
-                    return;
+                    window.location.href = "http://127.0.0.1:4100/CPT/login";
                 }
                 document.getElementById("popup").style.display = "none";
             })

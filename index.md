@@ -39,29 +39,9 @@ Create Beautiful Buttons Easily!
         <h2>Get Started</h2>
         <p>Ready to start creating stunning buttons? <a href="http://127.0.0.1:4100/CPT/createuser/">Sign Up</a> for a free account now!</p>
     </section>
-
     <section class="about">
         <h2>About Us</h2>
         <p>Buttonify is dedicated to providing you with the best tools to create beautiful buttons for your websites and applications. Our mission is to simplify the button design process, making it accessible to everyone.</p>
-    </section>
-
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <p>Have questions or feedback? We'd love to hear from you!</p>
-        <ul>
-            <li>Email: contact@buttonify.com</li>
-            <li>Phone: 1-800-BTN-IFY</li>
-        </ul>
-    </section>
-
-    <section class="follow">
-        <h2>Follow Us</h2>
-        <p>Stay updated with the latest news and updates by following us on social media:</p>
-        <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Instagram</a></li>
-        </ul>
     </section>
 </div>
 
@@ -98,21 +78,8 @@ Create Beautiful Buttons Easily!
         text-decoration: none;
         border-radius: 5px;
     }
-
-    .about,
-    .contact,
-    .follow {
+    
+    .about {
         margin-top: 40px;
-    }
-
-    .contact ul,
-    .follow ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .contact ul li,
-    .follow ul li {
-        margin-bottom: 10px;
     }
 </style>

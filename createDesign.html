@@ -262,7 +262,7 @@ search_exclude: true
                 cache: 'no-cache', // Set the cache property
                 body: JSON.stringify(body)
             };
-
+            console.log(body)
             fetch(url, authOptions)
             .then(response => {
                 // handle error response from Web API

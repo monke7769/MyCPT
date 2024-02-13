@@ -87,6 +87,7 @@ search_exclude: true
         <input type="color" id="borderColorSlider" value="#ffffff"><br>
         <label for="borderWidthSlider">Border Width:</label>
         <input type="range" id="borderWidthSlider" min="1" max="30" value="5"><br>
+        <button type="button" onclick="animationClick()" id="animationButton">Create Animation</button>
         <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
     </div>
     
@@ -94,10 +95,111 @@ search_exclude: true
         <button onclick="saveButton(nameInput.value)">Save</button>
     </div>
     
-    <div id="buttonContainer">
+    <div id="buttonContainer" style="position: relative; height: 300px;">
+        <canvas id="resizableCanvas" style="position: absolute; top: 0; left: 0; z-index: -1;" width="390" height="300"></canvas>
         <div id="buttonPreview"></div>
     </div>
-<script>
+
+    <script>
+        let dynamicStyles = null;
+        function addAnimation(body) {
+            if (!dynamicStyles) {
+                dynamicStyles = document.createElement('style');
+                dynamicStyles.type = 'text/css';
+                document.head.appendChild(dynamicStyles);
+            }
+
+            dynamicStyles.sheet.insertRule(body, dynamicStyles.length);
+            }
+        var position = [];
+        function animationClick() {
+            document.getElementById("buttonPreview").animate(
+                [{ left: "0px" },{ left: "50px" } ],
+                2000,
+            );
+            if (document.getElementById("resizableCanvas").style.zIndex == "-1") {
+                document.getElementById("resizableCanvas").style.zIndex = "1";
+                document.getElementById("animationButton").textContent = "Finish Animation";
+            } else {
+                document.getElementById("resizableCanvas").style.zIndex = "-1";
+                document.getElementById("animationButton").textContent = "Edit Animation";
+                animation = `@keyframes animation { `
+                for (let coordinate of position) {
+                    if ((position.indexOf(coordinate) % 2 == 0) || (position.indexOf(coordinate)) == (position.length - 1)) {
+                        animation += ((position.indexOf(coordinate)) * (100 / (position.length - 1))).toString() + `% { `
+                        console.log(animation)
+                        animation += `margin-left: ` + (coordinate[0] / 390 * 100).toString() + `%; margin-top: ` + (coordinate[1] / 390 * 100).toString() + `%; } `
+                        console.log(animation)
+                    }
+                }
+                addAnimation(animation);
+                document.getElementById("buttonPreview").style.animation = "4s linear 0s infinite normal animation";
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('resizableCanvas');
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            let lines = [];
+
+            function drawLines() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                lines.forEach(line => {
+                    ctx.beginPath();
+                    ctx.moveTo(line.start.x, line.start.y);
+                    ctx.lineTo(line.end.x, line.end.y);
+                    ctx.strokeStyle = line.color;
+                    ctx.stroke();
+                });
+            }
+
+            function resizeCanvas() {
+                const { width, height } = canvas.getBoundingClientRect();
+                canvas.width = width;
+                canvas.height = height;
+                drawLines();
+            }
+
+            function startDrawing(e) {
+                isDrawing = true;
+                lines.push({
+                    start: getMousePosition(e),
+                    end: getMousePosition(e),
+                    color: "#000000"
+                });
+                drawLines();
+                position.push([getMousePosition(e).x, getMousePosition(e).y])
+                console.log(position)
+            }
+
+            function continueDrawing(e) {
+                if (!isDrawing) return;
+                lines[lines.length - 1].end = getMousePosition(e);
+                drawLines();
+            }
+
+            function stopDrawing(e) {
+                isDrawing = false;
+                position.push([getMousePosition(e).x, getMousePosition(e).y])
+                console.log(position)
+            }
+
+            function getMousePosition(e) {
+                const rect = canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', continueDrawing);
+            canvas.addEventListener('mouseup', stopDrawing);
+
+            // Initial canvas setup
+            resizeCanvas();
+        });
     const url ='http://127.0.0.1:8086/api/users/design';
     // Function to display the popup
     function openPopup() {
@@ -144,6 +246,7 @@ search_exclude: true
             });
         } else {
             alert("Please enter a design name!");
+            document.getElementById("popup").style.display = "none";
         }
     }
 
@@ -227,6 +330,8 @@ search_exclude: true
                 const errorMsg = 'Save error: ' + response.status;
                 console.log(errorMsg);
                 return;
+            } else {
+                alert("Design Saved")
             }
         })
         // catch fetch errors (ie ACCESS to server blocked)

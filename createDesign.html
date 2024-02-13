@@ -180,7 +180,7 @@ search_exclude: true
         <label for="borderWidthSlider">Border Width:</label>
         <input type="range" id="borderWidthSlider" min="1" max="30" value="5"><br>
         <button type="button" onclick="animationClick()" id="animationButton" class="button-80">Create Animation</button>
-        <textarea id="buttonCode" rows="4" cols="30" readonly></textarea>
+        <textarea id="buttonCode" rows="4" cols="30"></textarea>
         <label for="animationCode">Animation CSS: </label>
         <textarea id="animationCode" rows="4" cols="30" readonly></textarea>
         <div id="saveButton" style="display:none;">
@@ -435,7 +435,11 @@ search_exclude: true
             console.error(err);
         });
     }
-
+    function updateButtonContainer() {
+            const buttonCode = buttonCodeTextarea.value;
+            buttonContainer.innerHTML = buttonCode;
+        }
+    buttonCodeTextarea.addEventListener('input', updateButtonContainer);
 </script>
 
 </body>

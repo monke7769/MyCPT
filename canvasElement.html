@@ -1,9 +1,4 @@
----
-layout: base
-permalink: /canvas/
-title: Canvas Element Experiment
-search_exclude: true
----
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +38,6 @@ search_exclude: true
         document.addEventListener('DOMContentLoaded', function() {
             const canvas = document.getElementById('resizableCanvas');
             const ctx = canvas.getContext('2d');
-            const colorPicker = document.getElementById('colorPicker');
             let isDrawing = false;
             let lines = [];
 
@@ -70,7 +64,7 @@ search_exclude: true
                 lines.push({
                     start: getMousePosition(e),
                     end: getMousePosition(e),
-                    color: colorPicker.value
+                    color: "#000000"
                 });
                 drawLines();
             }
@@ -97,11 +91,6 @@ search_exclude: true
             canvas.addEventListener('mousedown', startDrawing);
             canvas.addEventListener('mousemove', continueDrawing);
             window.addEventListener('mouseup', stopDrawing);
-
-            colorPicker.addEventListener('input', function() {
-                lines[lines.length - 1].color = colorPicker.value;
-                drawLines();
-            });
 
             // Initial canvas setup
             resizeCanvas();

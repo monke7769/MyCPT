@@ -1,8 +1,8 @@
-title: Nighthawk-Pages
+title: Buttonify
 description: "August 2023 to June 2024"
 owner_name: Tirth Thakkar
 github_username: Tirth-Thakkar
-github_repo: "Nighthawk-Pages"
+github_repo: "CPT"
 baseurl: "/CPT"
 remote_theme: jekyll/minima
 minima:

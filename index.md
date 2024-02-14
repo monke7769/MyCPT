@@ -38,7 +38,7 @@ Create Beautiful Buttons Easily!
     </section>
     <section class="get-started">
         <h2>Get Started</h2>
-        <p>Ready to start creating stunning buttons? <a href="http://127.0.0.1:4100/CPT/login/">Sign Up</a> for a free account now!</p>
+        <p>Ready to start creating stunning buttons? <a href="http://127.0.0.1:4100/CPT/createuser/">Sign Up</a> for a free account now!</p>
     </section>
 
     <section class="about">

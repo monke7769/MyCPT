@@ -50,6 +50,7 @@ Create Beautiful Buttons Easily!
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        color: black; 
     }
 
     .container {
@@ -68,6 +69,7 @@ Create Beautiful Buttons Easily!
         background-color: #f9f9f9;
         padding: 20px;
         border-radius: 8px;
+        color: black;
     }
 
     .get-started a {

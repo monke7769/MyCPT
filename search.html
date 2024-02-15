@@ -143,4 +143,50 @@ search_exclude: true
                 checkButton();
             }
         });
+        function displayDataInTable(data) {
+            var tableContainer = document.getElementById('tableContainer');
+            var tableHTML = '<table>';
+            tableHTML += '<tr><th>Name</th><th>Content</th><th>Description</th><th>Likes</th><th>Dislikes</th><th>Type</th></tr>';
+            data.forEach(function(item) {
+                tableHTML += '<tr>';
+                tableHTML += '<td>' + item.Name + '</td>';
+                tableHTML += '<td>' + (item.Content || '') + '</td>';
+                tableHTML += '<td>' + item.Description + '</td>';
+                tableHTML += '<td><button onclick="toggleLike(this)" data-item-id="' + item.id + '">Like</button><span class="likesCount">0</span></td>';
+                tableHTML += '<td><button onclick="toggleDislike(this)" data-item-id="' + item.id + '">Dislike</button><span class="dislikesCount">0</span></td>';
+                tableHTML += '<td>' + item.Type + '</td>';
+                tableHTML += '</tr>';
+            });
+            tableHTML += '</table>';
+            tableContainer.innerHTML = tableHTML;
+        }
+
+        function toggleLike(button) {
+            var likesCount = button.parentNode.querySelector('.likesCount');
+
+            if (button.classList.contains('liked')) {
+                console.log('Unliked item');
+                button.classList.remove('liked');
+                likesCount.textContent = parseInt(likesCount.textContent) - 1;
+            } else {
+                console.log('Liked item');
+                button.classList.add('liked');
+                likesCount.textContent = parseInt(likesCount.textContent) + 1;
+            }
+        }
+
+        function toggleDislike(button) {
+            var dislikesCount = button.parentNode.querySelector('.dislikesCount');
+
+            if (button.classList.contains('disliked')) {
+                console.log('Undisliked item');
+                button.classList.remove('disliked');
+                dislikesCount.textContent = parseInt(dislikesCount.textContent) - 1;
+            } else {
+                console.log('Disliked item');
+                button.classList.add('disliked');
+                dislikesCount.textContent = parseInt(dislikesCount.textContent) + 1;
+            }
+        }
+
     </script>

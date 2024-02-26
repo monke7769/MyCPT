@@ -34,6 +34,7 @@ search_exclude: true
         }
     </style>
 </head>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <body>
     <form action="#" method="get" onsubmit="return checkButton()">
         <input type="text" name="search" id="search" style="width: 400px;" placeholder="Enter your search term">
@@ -145,15 +146,15 @@ search_exclude: true
         });
         function displayDataInTable(data) {
             var tableContainer = document.getElementById('tableContainer');
-            var tableHTML = '<table>';
+            var tableHTML = '<table id="table">';
             tableHTML += '<tr><th>Name</th><th>Content</th><th>Description</th><th>Likes</th><th>Dislikes</th><th>Type</th></tr>';
             data.forEach(function(item) {
                 tableHTML += '<tr>';
-                tableHTML += '<td>' + item.Name + '</td>';
+                tableHTML += '<td class="nr">' + item.Name + '</td>';
                 tableHTML += '<td>' + (item.Content || '') + '</td>';
                 tableHTML += '<td>' + item.Description + '</td>';
-                tableHTML += '<td><button onclick="toggleLike(this)" data-item-id="' + item.id + '">Like</button><span class="likesCount">0</span></td>';
-                tableHTML += '<td><button onclick="toggleDislike(this)" data-item-id="' + item.id + '">Dislike</button><span class="dislikesCount">0</span></td>';
+                tableHTML += '<td><button onclick="toggleLike(this, this.closest(`tr`).querySelector(`.nr`).textContent)" data-item-id="' + item.id + '">Like</button><span class="likesCount">' + item.Likes + '</span></td>';
+                tableHTML += '<td><button onclick="toggleDislike(this, this.closest(`tr`).querySelector(`.nr`).textContent)" data-item-id="' + item.id + '">Dislike</button><span class="dislikesCount">' + item.Dislikes + '</span></td>';
                 tableHTML += '<td>' + item.Type + '</td>';
                 tableHTML += '</tr>';
             });
@@ -161,32 +162,90 @@ search_exclude: true
             tableContainer.innerHTML = tableHTML;
         }
 
-        function toggleLike(button) {
+        function toggleLike(button, name) {
+            console.log("toggle like")
             var likesCount = button.parentNode.querySelector('.likesCount');
 
             if (button.classList.contains('liked')) {
-                console.log('Unliked item');
-                button.classList.remove('liked');
-                likesCount.textContent = parseInt(likesCount.textContent) - 1;
+                body = {
+                    like: "remove",
+                    name: name,
+                }
             } else {
-                console.log('Liked item');
-                button.classList.add('liked');
-                likesCount.textContent = parseInt(likesCount.textContent) + 1;
+                body = {
+                    like: "add",
+                    name: name,
+                }
             }
+            const url ='http://127.0.0.1:8086/api/users/design';
+            const authOptions = {
+                mode: 'cors', // no-cors, *cors, same-origin
+                credentials: 'include', // include, same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'DELETE', // Override the method property
+                cache: 'no-cache', // Set the cache property
+                body: JSON.stringify(body)
+            };
+            fetch(url, authOptions)
+            .then(response => {
+                // handle error response from Web API
+                if (!response.ok) {
+                    const errorMsg = 'Save error: ' + response.status;
+                    console.log(errorMsg);
+                    return;
+                } else {
+                    window.location.href = "http://127.0.0.1:4100/CPT/search/?search=" + document.getElementById("search").value + "#"
+                }
+            })
+            // catch fetch errors (ie ACCESS to server blocked)
+            .catch(err => {
+                console.log(body);
+                console.error(err);
+            });
         }
-
-        function toggleDislike(button) {
+        function toggleDislike(button, name) {
             var dislikesCount = button.parentNode.querySelector('.dislikesCount');
 
             if (button.classList.contains('disliked')) {
-                console.log('Undisliked item');
-                button.classList.remove('disliked');
-                dislikesCount.textContent = parseInt(dislikesCount.textContent) - 1;
+                body = {
+                    dislike: "remove",
+                    name: name,
+                }
             } else {
-                console.log('Disliked item');
-                button.classList.add('disliked');
-                dislikesCount.textContent = parseInt(dislikesCount.textContent) + 1;
+                body = {
+                    dislike: "add",
+                    name: name,
+                }
             }
+            const url ='http://127.0.0.1:8086/api/users/design';
+            const authOptions = {
+                mode: 'cors', // no-cors, *cors, same-origin
+                credentials: 'include', // include, same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'DELETE', // Override the method property
+                cache: 'no-cache', // Set the cache property
+                body: JSON.stringify(body)
+            };
+            fetch(url, authOptions)
+            .then(response => {
+                // handle error response from Web API
+                if (!response.ok) {
+                    const errorMsg = 'Save error: ' + response.status;
+                    console.log(errorMsg);
+                    return;
+                } else {
+                    window.location.href = "http://127.0.0.1:4100/CPT/search/?search=" + document.getElementById("search").value + "#"
+                }
+            })
+            // catch fetch errors (ie ACCESS to server blocked)
+            .catch(err => {
+                console.log(body);
+                console.error(err);
+            });
         }
 
     </script>

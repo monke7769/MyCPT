@@ -120,18 +120,18 @@ search_exclude: true
         }
         function displayDataInTable(data) {
             var tableContainer = document.getElementById('tableContainer');
-            var tableHTML = '<table>';
+            var tableHTML = '<table id="table">';
             const searchTerm = getSearchTerm();
             tableHTML += '<tr><th>Name</th><th>Content</th><th>Description</th><th>Likes</th><th>Dislikes</th><th>Type</th></tr>';
             data.forEach(function(item) {
                 // Check if searchTerm is a substring of Name or Content
                 if (searchTerm && (item.Name.includes(searchTerm) || (item.Content && item.Content.includes(searchTerm)))) {
                     tableHTML += '<tr>';
-                    tableHTML += '<td>' + item.Name + '</td>';
+                    tableHTML += '<td class="nr">' + item.Name + '</td>';
                     tableHTML += '<td>' + (item.Content || '') + '</td>';
                     tableHTML += '<td>' + item.Description + '</td>';
-                    tableHTML += '<td>' + item.Likes + '</td>';
-                    tableHTML += '<td>' + item.Dislikes + '</td>';
+                    tableHTML += '<td><button onclick="toggleLike(this, this.closest(`tr`).querySelector(`.nr`).textContent)" data-item-id="' + item.id + '">Like</button><span class="likesCount">' + item.Likes + '</span></td>';
+                    tableHTML += '<td><button onclick="toggleDislike(this, this.closest(`tr`).querySelector(`.nr`).textContent)" data-item-id="' + item.id + '">Dislike</button><span class="dislikesCount">' + item.Dislikes + '</span></td>';
                     tableHTML += '<td>' + item.Type + '</td>';
                     tableHTML += '</tr>';
                 }
@@ -144,23 +144,6 @@ search_exclude: true
                 checkButton();
             }
         });
-        function displayDataInTable(data) {
-            var tableContainer = document.getElementById('tableContainer');
-            var tableHTML = '<table id="table">';
-            tableHTML += '<tr><th>Name</th><th>Content</th><th>Description</th><th>Likes</th><th>Dislikes</th><th>Type</th></tr>';
-            data.forEach(function(item) {
-                tableHTML += '<tr>';
-                tableHTML += '<td class="nr">' + item.Name + '</td>';
-                tableHTML += '<td>' + (item.Content || '') + '</td>';
-                tableHTML += '<td>' + item.Description + '</td>';
-                tableHTML += '<td><button onclick="toggleLike(this, this.closest(`tr`).querySelector(`.nr`).textContent)" data-item-id="' + item.id + '">Like</button><span class="likesCount">' + item.Likes + '</span></td>';
-                tableHTML += '<td><button onclick="toggleDislike(this, this.closest(`tr`).querySelector(`.nr`).textContent)" data-item-id="' + item.id + '">Dislike</button><span class="dislikesCount">' + item.Dislikes + '</span></td>';
-                tableHTML += '<td>' + item.Type + '</td>';
-                tableHTML += '</tr>';
-            });
-            tableHTML += '</table>';
-            tableContainer.innerHTML = tableHTML;
-        }
 
         function toggleLike(button, name) {
             console.log("toggle like")

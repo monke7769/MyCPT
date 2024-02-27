@@ -221,7 +221,7 @@ search_exclude: true
                     console.log(errorMsg);
                     return;
                 } else {
-                    window.location.href = "http://127.0.0.1:4100/CPT/search/?search=" + document.getElementById("search").value + "#"
+                    window.location.href = "http://127.0.0.1:4100/CPT/search/?search=" + document.getElementById("search").value + ""
                 }
             })
             // catch fetch errors (ie ACCESS to server blocked)
